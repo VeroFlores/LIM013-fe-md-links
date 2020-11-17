@@ -9,3 +9,4 @@ module.exports = sum;
 const chalk = require('chalk');
 
 console.log(chalk.green('Hello world!'));
+console.log(process.argv);
