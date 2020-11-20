@@ -60,10 +60,16 @@ const markdownFiles = (newPath) => {
   const changedPath = convertToAbsolutePath(newPath);
   console.log(changedPath);
   if (isFile(changedPath) === true && extMd(changedPath) === '.md') {
-    console.log(arrayFiles.push(changedPath));
+    return arrayFiles.push(changedPath);
+  }
+  if (isDirectory(changedPath) === true) {
+    return readDirectory(changedPath);
+  }else{
+    markdownFiles(changedPath);
   }
   return arrayFiles;
 };
+
 console.log(markdownFiles(note));
 // const mdLink = (notes) => {
 //   if (fs.existsSync(notes) === true) {
