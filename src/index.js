@@ -1,12 +1,12 @@
 // module.exports = () => {
 //   // ...
 //
-function sum(a, b) {
-  return a + b;
-}
-module.exports = sum;
+// function sum(a, b) {
+//   return a + b;
+// }
+// module.exports = sum;
 
-const chalk = require('chalk');
+// const chalk = require('chalk');
 
-console.log(chalk.green('Hello world!'));
-console.log(process.argv);
+// console.log(chalk.green('Hello world!'));
+// console.log(process.argv);
