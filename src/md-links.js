@@ -25,6 +25,7 @@ const readFile = (newPath) => {
   const getElements = fs.readFileSync(newPath, { encoding: 'utf8', flag: 'r' });
   return getElements;
 };
+console.log(readFile('C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\prueba\\prueba1.md'));
 const readDirectory = (newPath) => {
   const getDoc = fs.readdirSync(newPath);
   return getDoc;
@@ -50,6 +51,66 @@ const getAllFiles = (absPath) => {
   return mdPath;
 };
 console.log(getAllFiles(note));
+const getLinks = (newPath) => {
+  const arr = [];
+  if (pathExist(newPath) === false) {
+    console.log('ruta no válida');
+  } else {
+    const absPath = convertToAbsolutePath(newPath);
+    console.log(absPath);
+    getAllFiles(absPath).forEach((file) => {
+      const renderer = new marked.Renderer();
+      renderer.link = (href, title, text) => {
+        const objectPerLink = {
+          href,
+          text,
+          file,
+        };
+        arr.push(objectPerLink);
+      };
+      marked(readFile(file), { renderer });
+    });
+  }
+  return arr;
+};
+console.log(getLinks(note));
+const getLinksInFiles = (newPath) => {
+  const array = [];
+  if (pathExist(newPath) === false) {
+    console.log('ruta no válida');
+  } else {
+    const absPath = convertToAbsolutePath(newPath);
+    getAllFiles(absPath).forEach((file) => {
+      const regex = /\[(.*)\]\(((?!#).+)\)/gi;
+      const links = readFile(file).match(regex).map((v) => v.split('](')[1].slice(0, -1));
+      const text = readFile(file).match(regex).map((v) => v.split('](')[0].slice(1));
+      links.forEach((link, i) => {
+        array.push({
+          href: link,
+          file: absPath,
+          text: text[i],
+        });
+        return array;
+      });
+    });
+  }
+  return array;
+};
+console.log(getLinksInFiles(note));
+
+//   const arr = [];
+//   const renderer = new marked.Renderer();
+//   renderer.link = (href, _, text) => {
+//     arr.push({
+//       href,
+//       text,
+//       pathN,
+//     });
+//   };
+//   marked(readFile(), {
+//     renderer,
+//   });
+// };
 module.exports = {
   pathExist,
   absolutePath,
@@ -60,59 +121,3 @@ module.exports = {
   extMd,
   getAllFiles,
 };
-// const getMdFiles = (arrFiles) => {
-//   const mdPath = arrFiles.filter((el) => extMd(el) === '.md');
-//   return mdPath;
-// };
-// const getLinks = (route) => {
-//   const content = getMdFiles(route).forEach((file) => readFile(file));
-//   return content;
-// };
-// console.log(getLinks(note));
-// const data = fs.readFileSync('C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/README.md',
-//   { encoding: 'utf8', flag: 'r' });
-// console.log(data);
-// const getLinks = (route) => {
-//   const arrLinks = [];
-//   getMdFiles(route).forEach((file) => {
-//     const renderer = new marked.Renderer();
-//     renderer.link = (href, text, file) => {
-//       const newObj = {
-//         href,
-//         text,
-//         file,
-//       };
-//       arrLinks.push(newObj);
-//     };
-//     marked(readFile(file), { renderer });
-//   });
-//   return arrLinks;
-// };
-// console.log(getLinks(getMdFiles(getAllFiles(note))));
-// Create reference instance
-
-// Override function
-// const renderer = {
-//   heading(text, level) {
-//     const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-//     return `
-//             <h${level}>
-//               <a name="${escapedText}" class="anchor" href="#${escapedText}">
-//                 <span class="header-link"></span>
-//               </a>
-//               ${text}
-//             </h${level}>`;
-//   },
-// };
-
-// marked.use({ renderer });
-
-// // Run marked
-// console.log(marked('# heading+'));
-// // JS DOM
-// const jsdom = require('jsdom');
-
-// const { JSDOM } = jsdom;
-// const dom = new JSDOM('<!DOCTYPE html><p>Hello world</p>');
-// console.log(dom.window.document.querySelector('p').textContent);
