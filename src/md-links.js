@@ -87,8 +87,8 @@ const getLinksInFiles = (newPath) => {
       links.forEach((link, i) => {
         array.push({
           href: link,
-          file: absPath,
           text: text[i],
+          file,
         });
         return array;
       });
