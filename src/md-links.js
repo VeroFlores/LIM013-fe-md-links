@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
+const axios = require('axios');
 
 const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueba';
 /* --Check if path exist -return boolean--*/
@@ -51,29 +52,29 @@ const getAllFiles = (absPath) => {
   return mdPath;
 };
 console.log(getAllFiles(note));
-const getLinks = (newPath) => {
-  const arr = [];
-  if (pathExist(newPath) === false) {
-    console.log('ruta no válida');
-  } else {
-    const absPath = convertToAbsolutePath(newPath);
-    console.log(absPath);
-    getAllFiles(absPath).forEach((file) => {
-      const renderer = new marked.Renderer();
-      renderer.link = (href, title, text) => {
-        const objectPerLink = {
-          href,
-          text,
-          file,
-        };
-        arr.push(objectPerLink);
-      };
-      marked(readFile(file), { renderer });
-    });
-  }
-  return arr;
-};
-console.log(getLinks(note));
+// const getLinks = (newPath) => {
+//   const arr = [];
+//   if (pathExist(newPath) === false) {
+//     console.log('ruta no válida');
+//   } else {
+//     const absPath = convertToAbsolutePath(newPath);
+//     console.log(absPath);
+//     getAllFiles(absPath).forEach((file) => {
+//       const renderer = new marked.Renderer();
+//       renderer.link = (href, title, text) => {
+//         const objectPerLink = {
+//           href,
+//           text,
+//           file,
+//         };
+//         arr.push(objectPerLink);
+//       };
+//       marked(readFile(file), { renderer });
+//     });
+//   }
+//   return arr;
+// };
+// console.log(getLinks(note));
 const getLinksInFiles = (newPath) => {
   const array = [];
   if (pathExist(newPath) === false) {
@@ -90,13 +91,36 @@ const getLinksInFiles = (newPath) => {
           text: text[i],
           file,
         });
-        return array;
       });
     });
   }
   return array;
 };
 console.log(getLinksInFiles(note));
+const checkLinks = (newPath) => {
+  const arrValidateLinks = [];
+  const arrLink = getLinksInFiles(newPath);
+  arrLink.forEach((el) => {
+    const linkHref = el.href;
+    arrValidateLinks.push(axios.get(el.href)
+      .then((response) => {
+        const newObj = {
+          status: response.status,
+          statusText: response.statusText,
+        };
+        return newObj;
+      })
+      .catch(() => ({
+        status: 400,
+        statusText: 'FAIL',
+      })));
+  });
+  return Promise.all(arrValidateLinks).then((values) => {
+    console.log(values);
+  });
+};
+
+console.log(checkLinks(note));
 
 //   const arr = [];
 //   const renderer = new marked.Renderer();
