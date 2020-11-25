@@ -7,7 +7,7 @@ const {
   readDirectory,
   extMd,
   getAllFiles,
-} = require('../src/md-links');
+} = require('../src/util');
 
 const absPathDir = 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\prueba';
 const absPathFile = 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\prueba\\prueba1.md';
