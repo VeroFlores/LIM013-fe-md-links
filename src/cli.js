@@ -20,3 +20,10 @@ if (argv.length === 1) {
     console.log(res);
   });
 }
+if (argv[1] === '--validate') {
+  mdLinks(argv[0], '--validate').then((res) => {
+    console.log(res);
+  }).catch((res) => {
+    console.log(res);
+  });
+}

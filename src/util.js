@@ -48,30 +48,7 @@ const getAllFiles = (absPath) => {
   const mdPath = arrFiles.filter((el) => extMd(el) === '.md');
   return mdPath;
 };
-// console.log(getAllFiles(note));
-// const getLinks = (newPath) => {
-//   const arr = [];
-//   if (pathExist(newPath) === false) {
-//     console.log('ruta no válida');
-//   } else {
-//     const absPath = convertToAbsolutePath(newPath);
-//     console.log(absPath);
-//     getAllFiles(absPath).forEach((file) => {
-//       const renderer = new marked.Renderer();
-//       renderer.link = (href, title, text) => {
-//         const objectPerLink = {
-//           href,
-//           text,
-//           file,
-//         };
-//         arr.push(objectPerLink);
-//       };
-//       marked(readFile(file), { renderer });
-//     });
-//   }
-//   return arr;
-// };
-// console.log(getLinks(note));
+
 const getLinksInFiles = (newPath) => {
   const array = [];
   const absPath = convertToAbsolutePath(newPath);
@@ -90,23 +67,7 @@ const getLinksInFiles = (newPath) => {
 
   return array;
 };
-// console.log(getLinksInFiles(note));
-// const validate = (url) => {
-//   axios.get(url.href)
-//     .then((response) => {
-//       const newObj = {
-//         ...url,
-//         status: response.status,
-//         statusText: response.statusText,
-//       };
-//       return newObj;
-//     })
-//     .catch(() => ({
-//       status: 400,
-//       statusText: 'FAIL',
-//     }));
-// };
-// console.log(validate('https://developers.google.com/v8/'));
+
 const linkValidate = (url, arrObj) => new Promise((resolve) => axios(url)
   .then((response) => resolve({
     ...arrObj,
@@ -123,24 +84,7 @@ const checkLinks = (newPath) => {
   });
   return Promise.all(arrValidateLinks);
 };
-// console.log(checkLinks(note));
 
-// const fetch = require('node-fetch');
-// const request = fetch('https://developers.google.com/v8/');
-
-//   const arr = [];
-//   const renderer = new marked.Renderer();
-//   renderer.link = (href, _, text) => {
-//     arr.push({
-//       href,
-//       text,
-//       pathN,
-//     });
-//   };
-//   marked(readFile(), {
-//     renderer,
-//   });
-// };
 module.exports = {
   pathExist,
   absolutePath,
