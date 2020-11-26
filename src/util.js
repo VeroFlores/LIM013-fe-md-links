@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
 
 // const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueba';
 
@@ -68,23 +67,6 @@ const getLinksInFiles = (newPath) => {
   return array;
 };
 
-const linkValidate = (url, arrObj) => new Promise((resolve) => axios(url)
-  .then((response) => resolve({
-    ...arrObj,
-    status: response.status,
-    statusText: response.statusText,
-  }))
-  .catch(() => resolve({ ...arrObj, status: 404, statusText: 'FAIL' })));
-
-const checkLinks = (newPath) => {
-  const arrValidateLinks = [];
-  const arrLink = getLinksInFiles(newPath);
-  arrLink.forEach((el) => {
-    arrValidateLinks.push(linkValidate(el.href, el));
-  });
-  return Promise.all(arrValidateLinks);
-};
-
 module.exports = {
   pathExist,
   absolutePath,
@@ -94,6 +76,5 @@ module.exports = {
   readDirectory,
   extMd,
   getAllFiles,
-  checkLinks,
   getLinksInFiles,
 };
