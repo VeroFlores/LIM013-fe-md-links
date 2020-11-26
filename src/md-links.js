@@ -1,8 +1,8 @@
 const {
   pathExist,
-  checkLinks,
   getLinksInFiles,
 } = require('./util');
+const checkLinks = require('./validate');
 
 // const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueb';
 
