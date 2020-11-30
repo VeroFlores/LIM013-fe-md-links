@@ -13,18 +13,23 @@ const axios = require('axios');
 //   console.log(res);
 // });
 // console.log(prueba);
-const linkValidate = (url, arrObj) => new Promise((resolve) => axios(url)
-  .then((response) => resolve({
-    ...arrObj,
-    status: response.status,
-    statusText: response.statusText,
-  }))
-  .catch(() => resolve({ ...arrObj, status: 404, statusText: 'FAIL' })));
+// const linkValidate = (url, arrObj) => new Promise((resolve) => axios(url)
+//   .then((response) => resolve({
+//     ...arrObj,
+//     status: response.status,
+//     statusText: response.statusText,
+//   }))
+//   .catch(() => resolve({ ...arrObj, status: 404, statusText: 'FAIL' })));
 
 const checkLinks = (arrLink) => {
   const arrValidateLinks = [];
-  arrLink.forEach((el) => {
-    arrValidateLinks.push(linkValidate(el.href, el));
+  arrLink.forEach((element) => {
+    arrValidateLinks.push(axios(element.href).then((response) => ({
+      ...element,
+      status: response.status,
+      statusText: response.statusText,
+    }))
+      .catch(() => ({ ...element, status: 404, statusText: 'FAIL' })));
   });
   return Promise.all(arrValidateLinks);
 };
