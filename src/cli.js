@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const commander = require('commander'); // (normal include)
 const process = require('process');
 const mdLinks = require('./md-links');
+const validate = require('./options');
 
 const program = new commander.Command();
 program.version('0.0.1');
@@ -25,5 +26,17 @@ if (argv[1] === '--validate') {
     console.log(res);
   }).catch((res) => {
     console.log(res);
+  });
+}
+if (argv[1] === '--stats') {
+  mdLinks(argv[0], '--stats').then((res) => {
+    console.log(validate.statsLinks(res));
+  }).catch(() => {
+  });
+}
+if (argv[1] === '--stats' && argv[2] === '--validate') {
+  mdLinks(argv[0], '--stats').then((res) => {
+    console.log(validate.statsValidate(res));
+  }).catch(() => {
   });
 }

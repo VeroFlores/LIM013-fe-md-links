@@ -2,20 +2,17 @@ const {
   pathExist,
   getLinksInFiles,
 } = require('./util');
-const checkLinks = require('./validate');
+const validate = require('./options');
 
 // const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueb';
 
 module.exports = (path, options) => {
   const promise = new Promise((resolve, reject) => {
     if (pathExist(path) === false) {
-      reject(new Error('Enter new path'));
+      resolve('Enter new path');
     }
-
     if (pathExist(path) === true && options) {
-      resolve(checkLinks(path)).then((arr) => {
-        resolve(arr);
-      });
+      resolve(validate.checkLinks(path));
     } else {
       resolve(getLinksInFiles(path));
       // if (options.validate === true) {
