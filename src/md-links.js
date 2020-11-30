@@ -12,7 +12,7 @@ module.exports = (path, options) => {
       resolve('Enter new path');
     }
     if (pathExist(path) === true && options) {
-      resolve(validate.checkLinks(path));
+      resolve(validate.checkLinks(getLinksInFiles(path)));
     } else {
       resolve(getLinksInFiles(path));
       // if (options.validate === true) {

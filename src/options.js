@@ -1,7 +1,4 @@
 const axios = require('axios');
-const {
-  getLinksInFiles,
-} = require('./util');
 
 // const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueba';
 // const prueba = axios.get('https://nodejs.org')
@@ -24,9 +21,8 @@ const linkValidate = (url, arrObj) => new Promise((resolve) => axios(url)
   }))
   .catch(() => resolve({ ...arrObj, status: 404, statusText: 'FAIL' })));
 
-const checkLinks = (newPath) => {
+const checkLinks = (arrLink) => {
   const arrValidateLinks = [];
-  const arrLink = getLinksInFiles(newPath);
   arrLink.forEach((el) => {
     arrValidateLinks.push(linkValidate(el.href, el));
   });
