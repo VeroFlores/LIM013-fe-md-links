@@ -1,33 +1,41 @@
 const fs = require('fs');
 const path = require('path');
-
-// const note = 'C:/Users/PC USER/Desktop/LABORATORIA/MD-LINKS/LIM013-fe-md-links/prueba';
-
-/* --Check if path exist -return boolean--*/
+// Check if path exist(method)
+// Return boolean
 const pathExist = (newPath) => {
   const checkPathExist = fs.existsSync(newPath);
   return checkPathExist;
 };
+// Check if Path is absolute(method)
+// return boolean
 const absolutePath = (newPath) => {
   const checkAbsolutePath = path.isAbsolute(newPath);
   return checkAbsolutePath;
 };
-/* --Convert relativePath to Absolute return absolutePath--*/
+// This function convert a relative path to absolute path
+// return an absolute path
 const convertToAbsolutePath = (newPath) => (
-  absolutePath(newPath) === 'true' ? newPath : path.resolve(newPath)
+  absolutePath(newPath) ? newPath : path.resolve(newPath)
 );
+// Check if path is a file
+// return a boolean
 const isFile = (newPath) => {
   const checkIsFile = fs.statSync(newPath).isFile();
   return checkIsFile;
 };
+// read File
+// return strings if you use encoding and flag
 const readFile = (newPath) => {
   const getElements = fs.readFileSync(newPath, { encoding: 'utf8', flag: 'r' });
   return getElements;
 };
+// return relative path of all documents found in the directory
 const readDirectory = (newPath) => {
   const getDoc = fs.readdirSync(newPath);
   return getDoc;
 };
+// path.extname('users/joe/notes.txt')
+// return .txt
 const extMd = (newPath) => {
   const mdFile = path.extname(newPath);
   return mdFile;

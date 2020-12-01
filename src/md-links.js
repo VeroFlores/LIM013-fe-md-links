@@ -11,7 +11,7 @@ module.exports = (path, options) => {
     if (pathExist(path) === false) {
       resolve('Enter new path');
     }
-    if (pathExist(path) === true && options) {
+    if (pathExist(path) === true && options.validate === true) {
       resolve(validate.checkLinks(getLinksInFiles(path)));
     } else {
       resolve(getLinksInFiles(path));

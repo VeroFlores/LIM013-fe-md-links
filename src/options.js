@@ -24,7 +24,7 @@ const axios = require('axios');
 const checkLinks = (arrLink) => {
   const arrValidateLinks = [];
   arrLink.forEach((element) => {
-    arrValidateLinks.push(axios(element.href).then((response) => ({
+    arrValidateLinks.push(axios.get(element.href).then((response) => ({
       ...element,
       status: response.status,
       statusText: response.statusText,
