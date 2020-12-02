@@ -17,30 +17,31 @@ const absolutePath = (newPath) => {
 const convertToAbsolutePath = (newPath) => (
   absolutePath(newPath) ? newPath : path.resolve(newPath)
 );
-// Check if path is a file
+// Check if path is a file(method)
 // return a boolean
 const isFile = (newPath) => {
   const checkIsFile = fs.statSync(newPath).isFile();
   return checkIsFile;
 };
-// read File
+// read File(method)
 // return strings if you use encoding and flag
 const readFile = (newPath) => {
   const getElements = fs.readFileSync(newPath, { encoding: 'utf8', flag: 'r' });
   return getElements;
 };
-// return relative path of all documents found in the directory
+// return relative path of all documents found in the directory(method)
 const readDirectory = (newPath) => {
   const getDoc = fs.readdirSync(newPath);
   return getDoc;
 };
-// path.extname('users/joe/notes.txt')
+// path.extname('users/joe/notes.txt')(method)
 // return .txt
 const extMd = (newPath) => {
   const mdFile = path.extname(newPath);
   return mdFile;
 };
-/* --get all files from all directories--*/
+// this function get all files md. from a file or directory
+// return an array of paths
 const getAllFiles = (absPath) => {
   let arrFiles = [];
   if (isFile(absPath) === true) {
@@ -55,7 +56,8 @@ const getAllFiles = (absPath) => {
   const mdPath = arrFiles.filter((el) => extMd(el) === '.md');
   return mdPath;
 };
-
+// this function get  all links from md files
+// return an array of object
 const getLinksInFiles = (newPath) => {
   const array = [];
   const absPath = convertToAbsolutePath(newPath);
