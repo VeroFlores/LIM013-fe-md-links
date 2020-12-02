@@ -4,10 +4,10 @@ const {
   statsLinks,
   statsValidate,
 } = require('../src/options');
-// Mock out all top level functions, such as get, put, delete and post:
+const mdLinks = require('../src/md-links');
+
 jest.mock('axios');
-// Without using any other libraries:
-const newPath = 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\test\\exampleTest';
+
 const links1 = [
   {
     href: 'https://www.w3schools.com/js/js_promise.asp',
@@ -21,9 +21,26 @@ const links2 = [{
   text: 'Callbacks',
   file: 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\test\\exampleTest\\example2.md',
 }];
+const arrLinks = links1.concat(links2);
+const arrayLinks = [
+  {
+    href: 'https://www.w3schools.com/js/js_promise.asp',
+    text: 'Promises',
+    file: 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\test\\exampleTest\\example1.md',
+    status: 200,
+    statusText: 'OK',
+  },
+  {
+    href: 'https://www.w3schools.com/js/js_callback.as',
+    text: 'Callbacks',
+    file: 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\test\\exampleTest\\example2.md',
+    status: 404,
+    statusText: 'FAIL',
+  },
+];
 // https://jestjs.io/docs/en/mock-functions test con jest
-describe('petición HTTP de Axios con respuesta positiva', () => {
-  it('good response', (done) => {
+describe('Request HTTP using Axios', () => {
+  it('the request is successfull', (done) => {
     axios.get.mockImplementation(() => Promise.resolve({ data: {}, status: 200, statusText: 'OK' }));
     checkLinks(links1).then((response) => {
       expect(response).toEqual([
@@ -38,7 +55,7 @@ describe('petición HTTP de Axios con respuesta positiva', () => {
       done();
     });
   });
-  it('La petición devuelve un objeto con error', (done) => {
+  it('the request fails', (done) => {
     axios.get.mockImplementation(() => Promise.reject(new Error({ data: {}, status: 404, statusText: 'FAIL' })));
     //
     checkLinks(links2).then((response) => {
@@ -53,5 +70,44 @@ describe('petición HTTP de Axios con respuesta positiva', () => {
       ]);
       done();
     });
+  });
+});
+describe('options Functions', () => {
+  it('Should return total and unique links', () => {
+    expect(statsLinks(arrayLinks)).toBe('✔ Total : 2\n✔ Unique : 2');
+  });
+  it('Should return broken links ', () => {
+    expect(statsValidate(arrayLinks)).toBe('✔ Broken : 1');
+  });
+});
+describe('mdLinks Functions', () => {
+  it('Should return a fail message', (done) => {
+    mdLinks('./tes', { validate: false }).then((data) => {
+      expect(data).toEqual('Enter new path');
+      done();
+    });
+    done();
+  });
+  it('Should return array of object [{ href, text, file, status, message }] ', (done) => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: {}, status: 200, statusText: 'OK' }));
+    mdLinks('./test/exampleTest/example1.md', { validate: true }).then((response) => {
+      expect(response).toEqual([
+        {
+          href: 'https://www.w3schools.com/js/js_promise.asp',
+          text: 'Promises',
+          file: 'C:\\Users\\PC USER\\Desktop\\LABORATORIA\\MD-LINKS\\LIM013-fe-md-links\\test\\exampleTest\\example1.md',
+          status: 200,
+          statusText: 'OK',
+        },
+      ]);
+      done();
+    });
+  });
+  it('Should return array of object [{ href, text, file }]', (done) => {
+    mdLinks('./test', { validate: false }).then((data) => {
+      expect(data).toEqual(arrLinks);
+      done();
+    });
+    done();
   });
 });
