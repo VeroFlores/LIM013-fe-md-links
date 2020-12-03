@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1606869010310" clover="3.2.0">
-  <project timestamp="1606869010311" name="All files">
+<coverage generated="1606916562067" clover="3.2.0">
+  <project timestamp="1606916562068" name="All files">
     <metrics statements="70" coveredstatements="70" conditionals="10" coveredconditionals="10" methods="25" coveredmethods="25" elements="105" coveredelements="105" complexity="0" loc="70" ncloc="70" packages="1" files="3" classes="3"/>
     <file name="md-links.js" path="C:\Users\PC USER\Desktop\LABORATORIA\MD-LINKS\LIM013-fe-md-links\src\md-links.js">
       <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
