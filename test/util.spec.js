@@ -64,4 +64,3 @@ describe('functions', () => {
     expect(getLinksInFiles(absPathDir)).toEqual(links);
   });
 });
-
