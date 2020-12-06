@@ -82,8 +82,8 @@ describe('options Functions', () => {
 });
 describe('mdLinks Functions', () => {
   it('Should return a fail message', (done) => {
-    mdLinks('./tes', { validate: false }).then((data) => {
-      expect(data).toEqual('Enter new path');
+    mdLinks('./tes', { validate: false }).catch((error) => {
+      expect(error).toEqual('Enter new path');
       done();
     });
     done();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1606916562067" clover="3.2.0">
-  <project timestamp="1606916562068" name="All files">
+<coverage generated="1607213708925" clover="3.2.0">
+  <project timestamp="1607213708926" name="All files">
     <metrics statements="70" coveredstatements="70" conditionals="10" coveredconditionals="10" methods="25" coveredmethods="25" elements="105" coveredelements="105" complexity="0" loc="70" ncloc="70" packages="1" files="3" classes="3"/>
     <file name="md-links.js" path="C:\Users\PC USER\Desktop\LABORATORIA\MD-LINKS\LIM013-fe-md-links\src\md-links.js">
       <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
@@ -10,9 +10,9 @@
       <line num="10" count="3" type="stmt"/>
       <line num="11" count="3" type="cond" truecount="2" falsecount="0"/>
       <line num="12" count="1" type="stmt"/>
-      <line num="14" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="14" count="2" type="cond" truecount="4" falsecount="0"/>
       <line num="15" count="1" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
       <line num="26" count="3" type="stmt"/>
     </file>
     <file name="options.js" path="C:\Users\PC USER\Desktop\LABORATORIA\MD-LINKS\LIM013-fe-md-links\src\options.js">
@@ -40,15 +40,15 @@
       <line num="1" count="2" type="stmt"/>
       <line num="2" count="2" type="stmt"/>
       <line num="5" count="2" type="stmt"/>
-      <line num="6" count="7" type="stmt"/>
-      <line num="7" count="7" type="stmt"/>
+      <line num="6" count="6" type="stmt"/>
+      <line num="7" count="6" type="stmt"/>
       <line num="11" count="2" type="stmt"/>
-      <line num="12" count="6" type="stmt"/>
-      <line num="13" count="6" type="stmt"/>
+      <line num="12" count="5" type="stmt"/>
+      <line num="13" count="5" type="stmt"/>
       <line num="17" count="2" type="stmt"/>
-      <line num="18" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
       <line num="22" count="2" type="stmt"/>
-      <line num="23" count="15" type="stmt"/>
+      <line num="23" count="14" type="stmt"/>
       <line num="24" count="14" type="stmt"/>
       <line num="28" count="2" type="stmt"/>
       <line num="29" count="11" type="stmt"/>
@@ -60,8 +60,8 @@
       <line num="40" count="18" type="stmt"/>
       <line num="41" count="18" type="stmt"/>
       <line num="45" count="2" type="stmt"/>
-      <line num="46" count="14" type="stmt"/>
-      <line num="47" count="14" type="cond" truecount="2" falsecount="0"/>
+      <line num="46" count="13" type="stmt"/>
+      <line num="47" count="13" type="cond" truecount="2" falsecount="0"/>
       <line num="48" count="9" type="stmt"/>
       <line num="50" count="4" type="stmt"/>
       <line num="51" count="9" type="stmt"/>
@@ -69,17 +69,17 @@
       <line num="53" count="9" type="stmt"/>
       <line num="56" count="17" type="stmt"/>
       <line num="57" count="13" type="stmt"/>
-      <line num="61" count="2" type="stmt"/>
-      <line num="62" count="4" type="stmt"/>
-      <line num="63" count="4" type="stmt"/>
-      <line num="64" count="4" type="stmt"/>
-      <line num="65" count="5" type="stmt"/>
+      <line num="62" count="2" type="stmt"/>
+      <line num="63" count="3" type="stmt"/>
+      <line num="64" count="3" type="stmt"/>
+      <line num="65" count="3" type="stmt"/>
       <line num="66" count="5" type="stmt"/>
       <line num="67" count="5" type="stmt"/>
       <line num="68" count="5" type="stmt"/>
       <line num="69" count="5" type="stmt"/>
-      <line num="77" count="3" type="stmt"/>
-      <line num="80" count="2" type="stmt"/>
+      <line num="70" count="5" type="stmt"/>
+      <line num="78" count="3" type="stmt"/>
+      <line num="81" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>

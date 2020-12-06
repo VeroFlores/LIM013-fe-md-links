@@ -44,7 +44,7 @@ const extMd = (newPath) => {
 // return an array of paths
 const getAllFiles = (absPath) => {
   let arrFiles = [];
-  if (isFile(absPath) === true) {
+  if (isFile(absPath)) {
     arrFiles.push(absPath);
   } else {
     readDirectory(absPath).forEach((file) => {
@@ -56,6 +56,7 @@ const getAllFiles = (absPath) => {
   const mdPath = arrFiles.filter((el) => extMd(el) === '.md');
   return mdPath;
 };
+
 // this function get  all links from md files
 // return an array of object
 const getLinksInFiles = (newPath) => {
