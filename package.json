@@ -1,8 +1,8 @@
 {
-  "name": "md-links",
+  "name": "vf-mdlinks",
   "version": "1.0.0",
   "description": "Verificar si los links en el archivo md. están oprativos",
-  "main": "index.js",
+  "main": "src/md-links.js",
   "scripts": {
     "test": "jest --coverage",
     "eslint": "eslint --ext .js src/ test/"
