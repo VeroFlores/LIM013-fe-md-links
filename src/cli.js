@@ -40,7 +40,7 @@ function cli(path, ValStatOpt, StatValOpt, ValOpt, statOp) {
         const printLinks = `${blue(argv[0])} ${pink(obj.href)} ${lightBlue(obj.text)}`;
         console.log(printLinks);
       });
-    }).catch((error) => console.log(warningColor(error)));
+    }).catch((error) => console.log(warningColor(error.message)));
   } if (ValStatOpt || StatValOpt) {
     return mdLinks(argv[0], { validate: true }).then((res) => {
       console.log(lightBlue(statsLinks(res)));
