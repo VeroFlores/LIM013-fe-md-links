@@ -16,7 +16,7 @@ Por ejemplo:
 
 #### Options
 
-##### `--validate`
+##### `--validate||-v`
 
 ![validate](https://user-images.githubusercontent.com/68167686/101281170-a6090680-379b-11eb-80ca-56cf575d16cb.png)
 
@@ -24,7 +24,7 @@ El _output_ en este caso incluye la palabra `ok` o `fail` después de
 la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
 URL.
 
-##### `--stats`
+##### `--stats||-s`
 
 ![stats](https://user-images.githubusercontent.com/68167686/101281221-e10b3a00-379b-11eb-8258-717076c234f9.png)
 
@@ -37,23 +37,26 @@ El _output_ es un texto con estadísticas básicas sobre los links.
 ```js
 const mdLinks = require("md-links");
 
-mdLinks("./some/example.md")
+mdLinks("./test/exampleTest")
   .then(links => {
     // => [{ href, text, file }]
   })
-  .catch(console.error);
+  .catch(error=>{
+  });
 
-mdLinks("./some/example.md", { validate: true })
+mdLinks("./test/exampleTest", { validate: true })
   .then(links => {
     // => [{ href, text, file, status, message }]
   })
-  .catch(console.error);
+  .catch(error=>{
+  });
 
-mdLinks("./some/dir")
+mdLinks("./test/exampleTe")
   .then(links => {
-    // => [{ href, text, file }]
   })
-  .catch(console.error);
+  .catch(error=>{
+    // =>[Error:Enter new path]
+  });
 ```
 ## Objetivos de aprendizaje
 ### JavaScript
