@@ -35,10 +35,10 @@ const links = [
 ];
 describe('nodeJs Methods', () => {
   it('Should verify if path exist', () => {
-    expect(pathExist(absPathDir)).toEqual(true);
+    expect(pathExist(absPathDir)).toBe(true);
   });
   it('Should verify if path is absolute', () => {
-    expect(absolutePath(absPathDir)).toEqual(true);
+    expect(absolutePath(absPathDir)).toBe(true);
   });
   it('verify if is a file', () => {
     expect(isFile(absPathFile)).toBe(true);
@@ -64,10 +64,4 @@ describe('functions', () => {
     expect(getLinksInFiles(absPathDir)).toEqual(links);
   });
 });
-// describe('mdLinks', () => {
 
-//   it('should...', () => {
-//     console.log('FIX ME!');
-//   });
-
-// });
