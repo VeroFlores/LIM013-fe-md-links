@@ -31,7 +31,10 @@
     "eslint-config-airbnb-base": "^14.2.1"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "chalk": "^4.1.0",
-    "commander": "^6.2.0"
+    "commander": "^6.2.0",
+    "jsdom": "^16.4.0",
+    "marked": "^1.2.5"
   }
 }
