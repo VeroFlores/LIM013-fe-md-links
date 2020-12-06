@@ -5,7 +5,12 @@ Md-Links es una librería que lee y analiza archivos en formato `Markdown`, para
 
 ![flowchart](https://user-images.githubusercontent.com/68167686/101280702-9936e380-3798-11eb-89c4-7712c76eec2b.png)
 ## ¿Cómo Usarlo?
+### Instalación:hammer:
+`npm install VeroFlores/LIM013-fe-md-links`
+`npm install https://github.com/VeroFlores/LIM013-fe-md-links`
 
+### Uso:arrow_forward:
+`const mdlink=require('vf-mdlinks');`
 ### CLI (Command Line Interface - Interfaz de Línea de Comando)
 
 `md-links <path-to-file> [options]`
@@ -13,6 +18,8 @@ Md-Links es una librería que lee y analiza archivos en formato `Markdown`, para
 Por ejemplo:
 
 ![cli](https://user-images.githubusercontent.com/68167686/101281125-63472e80-379b-11eb-893b-a9e29e40168e.png)
+
+El _output_ te indica el link , texto y el file. 
 
 #### Options
 
