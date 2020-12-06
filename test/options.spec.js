@@ -83,10 +83,10 @@ describe('options Functions', () => {
 describe('mdLinks Functions', () => {
   it('Should return a fail message', (done) => {
     mdLinks('./tes', { validate: false }).catch((error) => {
-      expect(error).toEqual('Enter new path');
+      //  jest doc expect(…).rejects.toMatch(…) should handle an Error object
+      expect(error).toEqual(new Error('Enter new path'));
       done();
     });
-    done();
   });
   it('Should return array of object [{ href, text, file, status, message }] ', (done) => {
     axios.get.mockImplementation(() => Promise.resolve({ data: {}, status: 200, statusText: 'OK' }));
