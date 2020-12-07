@@ -23,7 +23,7 @@ El _output_ te indica el link , texto y el file.
 
 #### Options
 
-##### `--validate||-v`
+##### `--validate`
 
 ![validate](https://user-images.githubusercontent.com/68167686/101281170-a6090680-379b-11eb-80ca-56cf575d16cb.png)
 
@@ -31,7 +31,7 @@ El _output_ en este caso incluye la palabra `ok` o `fail` después de
 la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
 URL.
 
-##### `--stats||-s`
+##### `--stats`
 
 ![stats](https://user-images.githubusercontent.com/68167686/101281221-e10b3a00-379b-11eb-8258-717076c234f9.png)
 
@@ -42,7 +42,7 @@ El _output_ es un texto con estadísticas básicas sobre los links.
 El _output_ es un texto con estadísticas básicas sobre los links.
 ### API `mdLinks(path, opts)`
 ```js
-const mdLinks = require("md-links");
+const mdLinks = require("vf-mdlinks");
 
 mdLinks("./test/exampleTest")
   .then(links => {
