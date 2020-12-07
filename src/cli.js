@@ -28,12 +28,18 @@ const darkYellow = chalk.hex('#A89F41');
 
 const argv = process.argv.slice(2);
 const newPath = (argv.length === 1);
-const valStat = (argv[1] === '--validate' && argv[2] === '--stats');
-const statVal = (argv[1] === '--stats' && argv[2] === '--validate');
-const val = (argv[1] === '--validate');
-const stat = (argv[1] === '--stats');
+// Not work with argv[0]
+// console.log(newPath);
+// const valStat = (argv[1] === '--validate' && argv[2] === '--stats');
+// const statVal = (argv[1] === '--stats' && argv[2] === '--validate');
+// const val = (argv[1] === '--validate');
+// const stat = (argv[1] === '--stats');
+const validateCommand = argv.indexOf('--validate') > 0;
+// console.log(validateCommand);
+const statCommand = argv.indexOf('--stats') > 0;
+// console.log(statCommand);
 
-function cli(path, ValStatOpt, StatValOpt, ValOpt, statOp) {
+function cli(path, ValOpt, statOp) {
   if (path) {
     return mdLinks(argv[0], { validate: false }).then((res) => {
       res.forEach((obj) => {
@@ -41,7 +47,7 @@ function cli(path, ValStatOpt, StatValOpt, ValOpt, statOp) {
         console.log(printLinks);
       });
     }).catch((error) => console.log(warningColor(error.message)));
-  } if (ValStatOpt || StatValOpt) {
+  } if (ValOpt && statOp) {
     return mdLinks(argv[0], { validate: true }).then((res) => {
       console.log(lightBlue(statsLinks(res)));
       console.log(yellow(statsValidate(res)));
@@ -65,4 +71,4 @@ function cli(path, ValStatOpt, StatValOpt, ValOpt, statOp) {
     });
   }
 }
-cli(newPath, valStat, statVal, val, stat);
+cli(newPath, validateCommand, statCommand);
