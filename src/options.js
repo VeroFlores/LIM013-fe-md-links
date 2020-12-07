@@ -1,12 +1,17 @@
 const axios = require('axios');
 
 const checkLinks = (arrLink) => {
-  const arrValidateLinks = arrLink.map((element) => (axios.get(element.href).then((response) => ({
-    ...element,
-    status: response.status,
-    statusText: response.statusText,
-  }))
-    .catch(() => ({ ...element, status: 404, statusText: 'FAIL' }))));
+  const arrValidateLinks = arrLink.map((element) => (axios.get(element.href)
+    .then((response) => ({
+      ...element,
+      status: response.status,
+      statusText: response.statusText,
+    }))
+    .catch(() => ({
+      ...element,
+      status: 404,
+      statusText: 'FAIL',
+    }))));
   return Promise.all(arrValidateLinks);
 };
 
