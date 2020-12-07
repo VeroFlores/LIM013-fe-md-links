@@ -5,7 +5,6 @@ const {
   isFile,
   readFile,
   readDirectory,
-  extMd,
   getAllFiles,
   getLinksInFiles,
 } = require('../src/util');
@@ -48,9 +47,6 @@ describe('nodeJs Methods', () => {
   });
   it('Should read a directory', () => {
     expect(readDirectory(absPathDir)).toEqual(filesArray);
-  });
-  it('Should filter with .md ext', () => {
-    expect(extMd(absPathFile)).toBe('.md');
   });
 });
 describe('functions', () => {
