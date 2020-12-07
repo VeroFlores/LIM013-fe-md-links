@@ -10,7 +10,7 @@ const { checkLinks } = require('./options');
 module.exports = (path, options) => {
   const promise = new Promise((resolve, reject) => {
     if (pathExist(path) === false) {
-      reject(new Error('Enter new path'));
+      reject(new Error(`${path} doesn't exist\nEnter a new path`));
     } else if (pathExist(path) === true && options.validate === true) {
       resolve(checkLinks(getLinksInFiles(path)));
     } else {
