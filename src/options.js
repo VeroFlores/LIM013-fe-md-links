@@ -11,7 +11,8 @@ const checkLinks = (arrLink) => {
       ...element,
       status: 404,
       statusText: 'FAIL',
-    }))));
+    }))
+  ));
   return Promise.all(arrValidateLinks);
 };
 
