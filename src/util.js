@@ -34,12 +34,7 @@ const readDirectory = (newPath) => {
   const getDoc = fs.readdirSync(newPath);
   return getDoc;
 };
-// path.extname('users/joe/notes.txt')(method)
-// return .txt
-const extMd = (newPath) => {
-  const mdFile = path.extname(newPath);
-  return mdFile;
-};
+
 // this function get all files md. from a file or directory
 // return an array of paths
 const getAllFiles = (absPath) => {
@@ -53,7 +48,9 @@ const getAllFiles = (absPath) => {
       arrFiles = arrFiles.concat(recursive);
     });
   }
-  const mdPath = arrFiles.filter((el) => extMd(el) === '.md');
+  // path.extname('users/joe/notes.txt')(method)
+  // return .txt
+  const mdPath = arrFiles.filter((el) => path.extname(el) === '.md');
   return mdPath;
 };
 
@@ -85,7 +82,6 @@ module.exports = {
   isFile,
   readFile,
   readDirectory,
-  extMd,
   getAllFiles,
   getLinksInFiles,
 };
