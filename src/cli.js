@@ -15,8 +15,8 @@ const program = new commander.Command();
 program.version('0.0.1');
 program
   .command('mdlinks <path>')
-  .option('-v, --validate')
-  .option('-s, --stats')
+  .option('--validate')
+  .option('--stats')
   .parse(process.argv);
 
 const warningColor = chalk.keyword('orange');
