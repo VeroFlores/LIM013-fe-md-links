@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const marked = require('marked');
 // Check if path exist(method)
 // Return boolean
 const pathExist = (newPath) => {
@@ -56,25 +57,45 @@ const getAllFiles = (absPath) => {
 
 // this function get  all links from md files
 // return an array of object
-const getLinksInFiles = (newPath) => {
-  const array = [];
-  const absPath = convertToAbsolutePath(newPath);
-  getAllFiles(absPath).forEach((file) => {
-    const regex = /\[(.*)\]\(((?!#).+)\)/gi;
-    const links = readFile(file).match(regex).map((v) => v.split('](')[1].slice(0, -1));
-    const text = readFile(file).match(regex).map((v) => v.split('](')[0].slice(1));
-    links.forEach((link, i) => {
-      array.push({
-        href: link,
-        text: text[i],
+// const getLinksInFiles = (arrFiles) => {
+//   const array = [];
+//   // const absPath = convertToAbsolutePath(newPath);
+//   arrFiles.forEach((file) => {
+//     const regex = /\[(.*)\]\(((?!#).+)\)/gi;
+//     const links = readFile(file).match(regex).map((v) => v.split('](')[1].slice(0, -1));
+//     const li = readFile(file).match(regex);
+//     console.log(li);
+//     const conditionalLink = (readFile(file).match(regex));
+//     const text = readFile(file).match(regex).map((v) => v.split('](')[0].slice(1));
+//     links.forEach((link, i) => {
+//       array.push({
+//         href: link,
+//         text: text[i],
+//         file,
+//       });
+//     });
+//   });
+
+//   return array;
+// };
+// this function get  all links from md files
+// return an array of object
+const getLinks = (newPath) => {
+  const arrLinks = [];
+  getAllFiles(newPath).forEach((file) => {
+    const renderer = new marked.Renderer();
+    renderer.link = (href, text) => {
+      const obj = {
+        href,
+        text,
         file,
-      });
-    });
+      };
+      arrLinks.push(obj);
+    };
+    marked(readFile(file), { renderer });
   });
-
-  return array;
+  return arrLinks;
 };
-
 module.exports = {
   pathExist,
   absolutePath,
@@ -83,5 +104,5 @@ module.exports = {
   readFile,
   readDirectory,
   getAllFiles,
-  getLinksInFiles,
+  getLinks,
 };
